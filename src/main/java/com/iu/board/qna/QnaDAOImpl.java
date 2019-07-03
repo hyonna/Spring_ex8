@@ -17,41 +17,41 @@ public class QnaDAOImpl implements BoardDAO {
 	
 	@Inject
 	private SqlSession sqlSession;
-	private String mapper = "QnaMapper.";
+	private static final String NAMESPACE = "QnaMapper.";
 	
 	
 	@Override
 	public int getTotalCount(PageMaker pageMaker) throws Exception {
-		return sqlSession.selectOne(mapper+"totalCount", pageMaker);
+		return sqlSession.selectOne(NAMESPACE+"totalCount", pageMaker);
 	}
 
 	@Override
 	public int setDelete(int num) throws Exception {
-		return sqlSession.delete(mapper+"qnaDelete", num);
+		return sqlSession.delete(NAMESPACE+"qnaDelete", num);
 	}
 
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.update(mapper+"qnaUpdate", boardDTO);
+		return sqlSession.update(NAMESPACE+"qnaUpdate", boardDTO);
 	}
 
 	@Override
 	public int setWrite(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.insert(mapper+"qnaWrite", boardDTO);
+		return sqlSession.insert(NAMESPACE+"qnaWrite", boardDTO);
 	}
 
 	@Override
 	public List<BoardDTO> getList(PageMaker pageMaker) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(mapper+"qnaList");
+		return sqlSession.selectList(NAMESPACE+"qnaList", pageMaker);
 	}
 
 	@Override
 	public BoardDTO getSelect(int num) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(mapper+"qnaSelect", num);
+		return sqlSession.selectOne(NAMESPACE+"qnaSelect", num);
 	}
 	
 	

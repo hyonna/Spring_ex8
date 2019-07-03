@@ -22,7 +22,7 @@
   		select title, writer, contents, reg_date, hit, ref, step, depth from qna where num=#{num}
   	</select>
   	
-  	<select id="qnaList" resultType="com.iu.board.qna.QnaDTO">
+  	<select id="qnaList" resultType="com.iu.board.qna.QnaDTO" parameterType="com.iu.util.PageMaker">
   		select * from
   		(select rownum R, Q.* from
   		(select * from qna where
