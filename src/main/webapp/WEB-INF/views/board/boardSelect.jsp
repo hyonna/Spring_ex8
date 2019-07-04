@@ -31,6 +31,9 @@
 		</tr>
 		</c:forEach>
 	</table>
+	<div style="margin-bottom: 10px;">
+		<a href="./${board}Reply?num=${dto.num}"><button class="btn btn-primary">답글달기</button></a>
+	</div>
 	<div style="float: right;">
 		<a href="./${board}Update?num=${dto.num}"><button class="btn btn-primary">Update</button></a>
 		<a href="./${board}Delete?num=${dto.num}"><button class="btn btn-danger">Delete</button></a>

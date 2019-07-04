@@ -1,12 +1,33 @@
 package com.iu.board.qna;
 
+import java.util.List;
+
 import com.iu.board.BoardDTO;
+import com.iu.file.FileDTO;
 
 public class QnaDTO extends BoardDTO {
 
 	private int ref;
 	private int step;
 	private int depth;
+	private List<FileDTO> files;
+	private List<Integer> fnum;
+	
+	
+	
+
+	public List<Integer> getFnum() {
+		return fnum;
+	}
+	public void setFnum(List<Integer> fnum) {
+		this.fnum = fnum;
+	}
+	public List<FileDTO> getFiles() {
+		return files;
+	}
+	public void setFiles(List<FileDTO> files) {
+		this.files = files;
+	}
 	public int getRef() {
 		return ref;
 	}

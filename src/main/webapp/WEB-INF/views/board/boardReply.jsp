@@ -14,31 +14,27 @@
 </head>
 <body>
 	<div class="container">
-	<h1>${board}Update</h1>
+	<h1>${board}Reply</h1>
 	<br>
-	<form action="./${board}Update" method="post">
-		<input type="hidden" name="num" value="${dto.num}">
-		<c:forEach items="${dto.files}" var="file">
-		<input type="text" name="fnum" value="${file.fnum}">
-		</c:forEach>
+	<form action="./${board}Write" method="post" enctype="multipart/form-data">
 		<div class="form-group">
 		  <label for="title">Title:</label>
- 		 <input class="form-control" type="text" id="title" name="title" value="${dto.title}">
+ 		 <input class="form-control" type="text" id="title" name="title">
 		</div>
 		<div class="form-group">
 		  <label for="writer">Writer:</label>
- 		 <input class="form-control" type="text" id="writer" name="writer" value="${dto.writer}">
+ 		 <input class="form-control" type="text" id="writer" name="writer">
 		</div>
 		<div class="form-group">
 		  <label for="contents">Contents:</label>
- 		 <textarea class="form-control" rows="5" id="contents" name="contents">${dto.contents}</textarea>
+ 		 <textarea class="form-control" rows="5" id="contents" name="contents"></textarea>
 		</div>
 		<div class="form-group">
 			<input type="file" name="f1">
 			<input type="file" name="f1">
 		</div>
 		<div>
-			<button class="btn btn-primary">Update</button>
+			<button class="btn btn-primary">Write</button>
 		</div>
 	</form>
 </div>

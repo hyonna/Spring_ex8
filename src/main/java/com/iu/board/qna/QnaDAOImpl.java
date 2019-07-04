@@ -38,8 +38,10 @@ public class QnaDAOImpl implements BoardDAO {
 
 	@Override
 	public int setWrite(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.insert(NAMESPACE+"qnaWrite", boardDTO);
+
+		int result = sqlSession.insert(NAMESPACE+"qnaWrite", boardDTO);
+		
+		return result;
 	}
 
 	@Override

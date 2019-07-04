@@ -11,15 +11,36 @@
   	</insert>
   	
   	<update id="qnaUpdate" parameterType="com.iu.board.qna.QnaDTO">
-  		update qna set title=#{title}, contents=#{contents} where num=#{num}
+  		update qna set title=#{title}, writer=#{writer}, contents=#{contents} where num=#{num}
   	</update>
   	
   	<delete id="qnaDelete" parameterType="java.lang.Integer">
   		delete qna where num=#{num}
   	</delete>
   	
-  	<select id="qnaSelect" parameterType="java.lang.Integer" resultType="com.iu.board.qna.QnaDTO">
-  		select title, writer, contents, reg_date, hit, ref, step, depth from qna where num=#{num}
+  	
+  	<resultMap type="com.iu.board.qna.QnaDTO" id="qna">
+		<id property="num" column="num"/>
+		<result property="title" column="title"/>
+		<result property="writer" column="writer"/>
+		<result property="contents" column="contents"/>
+		<result property="reg_date" column="reg_date"/>
+		<result property="hit" column="hit"/>
+		<result property="ref" column="ref"/>
+		<result property="step" column="step"/>
+		<result property="depth" column="depth"/>
+		<collection property="files" resultMap="fileResult" ofType="com.iu.file.FileDTO" javaType="java.util.ArrayList">
+		</collection>
+ 	</resultMap>
+ 	
+ 	<resultMap type="com.iu.file.FileDTO" id="fileResult">
+ 			<id property="fnum" column="fnum"/>
+			<result property="fname" column="fname"/>
+			<result property="oname" column="oname"/>
+ 	</resultMap>
+  	
+  	<select id="qnaSelect" parameterType="java.lang.Integer" resultMap="qna">
+  		select * from qna Q full join files F using(num) where num=#{num}
   	</select>
   	
   	<select id="qnaList" resultType="com.iu.board.qna.QnaDTO" parameterType="com.iu.util.PageMaker">
