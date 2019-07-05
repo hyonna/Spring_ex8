@@ -16,7 +16,7 @@
 	<div class="container">
 	<h1>${board}Update</h1>
 	<br>
-	<form action="./${board}Update" method="post">
+	<form action="./${board}Update" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="num" value="${dto.num}">
 		<c:forEach items="${dto.files}" var="file">
 		<input type="text" name="fnum" value="${file.fnum}">

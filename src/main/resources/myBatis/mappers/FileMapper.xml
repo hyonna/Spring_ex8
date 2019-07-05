@@ -16,7 +16,7 @@
  	<delete id="fileDelete" parameterType="java.lang.Integer">
  		delete files where fnum=#{fnum}
  	</delete>
- 	<update id="fileUpdate" parameterType="com.iu.file.FileDTO">
+ 	<update id="fileUpdate" parameterType="java.util.List">
  		update files set fname=#{fname}, oname=#{oname} where fnum=#{fnum}
  	</update>
  	<select id="fileSelect" parameterType="java.lang.Integer" resultType="com.iu.file.FileDTO">
@@ -26,5 +26,6 @@
  	<select id="fileList" resultType="com.iu.file.FileDTO" parameterType="java.lang.Integer">
  		select * from files where num=#{num}
  	</select>
+ 	
  </mapper>
   

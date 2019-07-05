@@ -40,7 +40,11 @@
 		<c:forEach items="${list}" var="dto">
 		<tr>
 			<td>${dto.num}</td>
-			<td><a href="./${board}Select?num=${dto.num}">${dto.title}</a></td>
+			<td>
+			<c:forEach begin="1" end="${dto.depth}">
+			<img width="20px" src="../resources/images/reply.png" style="transform: rotate(-180deg);">
+			</c:forEach><a href="./${board}Select?num=${dto.num}">${dto.title}</a>
+			</td>
 			<td>${dto.writer}</td>
 			<td>${dto.reg_date}</td>
 			<td>${dto.hit}</td>

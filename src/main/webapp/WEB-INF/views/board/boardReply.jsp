@@ -16,7 +16,10 @@
 	<div class="container">
 	<h1>${board}Reply</h1>
 	<br>
-	<form action="./${board}Write" method="post" enctype="multipart/form-data">
+	<form action="./${board}Reply" method="post" enctype="multipart/form-data">
+		<input type="text" name="ref" value="${dto.ref}">
+		<input type="text" name="step" value="${dto.step}">
+		<input type="text" name="depth" value="${dto.depth}">
 		<div class="form-group">
 		  <label for="title">Title:</label>
  		 <input class="form-control" type="text" id="title" name="title">
@@ -27,14 +30,15 @@
 		</div>
 		<div class="form-group">
 		  <label for="contents">Contents:</label>
- 		 <textarea class="form-control" rows="5" id="contents" name="contents"></textarea>
+ 		 <textarea class="form-control" rows="5" id="contents" name="contents">
+ 		 </textarea>
 		</div>
 		<div class="form-group">
 			<input type="file" name="f1">
 			<input type="file" name="f1">
 		</div>
 		<div>
-			<button class="btn btn-primary">Write</button>
+			<button class="btn btn-primary">Reply</button>
 		</div>
 	</form>
 </div>

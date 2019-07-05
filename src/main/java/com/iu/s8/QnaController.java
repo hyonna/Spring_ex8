@@ -28,6 +28,39 @@ public class QnaController {
 	private QnaServiceImpl qnaServiceImpl;
 	@Inject
 	private FileDAO fileDAO;
+	
+	///////////////////////////////////////Repeply
+	@RequestMapping(value = "qnaReply", method = RequestMethod.GET)
+	public String setReply(int num, Model model) throws Exception {
+		
+		BoardDTO boardDTO = qnaServiceImpl.getSelect(num);
+		model.addAttribute("dto", boardDTO);
+		model.addAttribute("board", "qna");
+		
+		return "board/boardReply";
+		
+	}
+	
+	@RequestMapping(value = "qnaReply", method = RequestMethod.POST)
+	public String setReply(Model model, QnaDTO qnaDTO, BoardDTO boardDTO, List<MultipartFile> f1, HttpSession session) throws Exception {
+		
+		int result = qnaServiceImpl.setReply(boardDTO, qnaDTO, f1, session);
+		
+		String view = "common/messageMove";
+		
+		if (result > 0) {
+			
+			view = "redirect:./qnaList";
+			
+		} else {
+			
+			model.addAttribute("message", "Reply Fail");
+			model.addAttribute("path", "./qnaList");
+		}
+		
+		return view;
+		
+	}
 
 	
 	
@@ -87,7 +120,7 @@ public class QnaController {
 
 		if (result > 0) {
 
-			view = "redirect:../";
+			view = "redirect:./qnaList";
 
 		} else {
 
@@ -101,8 +134,8 @@ public class QnaController {
 	//////////////////////////////////////Update
 	@RequestMapping(value = "qnaUpdate", method = RequestMethod.POST)
 	public String setUpdate(Model model, BoardDTO boardDTO, List<MultipartFile> f1, HttpSession session) throws Exception {
-
 		int result = qnaServiceImpl.setUpdate(boardDTO, f1, session);
+		
 		String view = "common/messageMove";
 
 		if (result > 0) {

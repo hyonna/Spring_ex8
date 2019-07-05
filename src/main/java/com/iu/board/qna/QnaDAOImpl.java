@@ -20,6 +20,17 @@ public class QnaDAOImpl implements BoardDAO {
 	private static final String NAMESPACE = "QnaMapper.";
 	
 	
+	public int setReplyUpdate(QnaDTO qnaDTO) throws Exception {
+		
+		return sqlSession.update(NAMESPACE+"qnaReplyUpdate", qnaDTO);
+	}
+	
+	public int setReply(QnaDTO qnaDTO) throws Exception {
+		
+		return sqlSession.insert(NAMESPACE+"qnaReply", qnaDTO);
+	}
+	
+	
 	@Override
 	public int getTotalCount(PageMaker pageMaker) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"totalCount", pageMaker);

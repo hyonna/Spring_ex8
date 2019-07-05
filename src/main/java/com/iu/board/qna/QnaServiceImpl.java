@@ -27,6 +27,42 @@ public class QnaServiceImpl implements BoardService {
 	@Inject
 	private FileDAO fileDAO;
 	
+	
+	public int setReply(BoardDTO boardDTO, QnaDTO qnaDTO, List<MultipartFile> multipartFiles, HttpSession session) throws Exception {
+		
+		int result = qnaDAO.setReplyUpdate(qnaDTO);
+		result = qnaDAO.setReply(qnaDTO);
+		
+		ArrayList<FileDTO> files = new ArrayList<FileDTO>();
+		
+		String path = session.getServletContext().getRealPath("upload");
+		System.out.println(path);
+		File file = new File(path);
+		if(!file.exists()) {
+			
+			file.mkdirs();
+		}
+		
+		for (MultipartFile multipartFile : multipartFiles) {
+			
+			String fname = fileSaver.saveFile3(path, multipartFile);
+			FileDTO fileDTO = new FileDTO();
+			fileDTO.setNum(boardDTO.getNum());
+			fileDTO.setFname(fname);
+			fileDTO.setOname(multipartFile.getOriginalFilename());
+			
+			files.add(fileDTO);
+		}
+		
+		
+		fileDAO.setWrite(files);
+		
+		
+		return result;
+		
+		
+	}
+	
 	@Override
 	public int setDelete(int num) throws Exception {
 		
@@ -36,8 +72,32 @@ public class QnaServiceImpl implements BoardService {
 	@Override
 	public int setUpdate(BoardDTO boardDTO, List<MultipartFile> multipartFiles, HttpSession session) throws Exception {
 
-		QnaDTO qnaDTO = (QnaDTO) boardDTO;
+		
 		int result = qnaDAO.setUpdate(boardDTO);
+		
+		ArrayList<FileDTO> files = new ArrayList<FileDTO>();
+		
+		String path = session.getServletContext().getRealPath("upload");
+		System.out.println(path);
+		File file = new File(path);
+		if(!file.exists()) {
+			
+			file.mkdirs();
+		}
+		
+		for (MultipartFile multipartFile : multipartFiles) {
+			
+			String fname = fileSaver.saveFile3(path, multipartFile);
+			FileDTO fileDTO = new FileDTO();
+			fileDTO.setNum(boardDTO.getNum());
+			fileDTO.setFname(fname);
+			fileDTO.setOname(multipartFile.getOriginalFilename());
+			
+			files.add(fileDTO);
+		}
+		
+		
+		fileDAO.setUpdate(files);
 		
 		
 		return result;
